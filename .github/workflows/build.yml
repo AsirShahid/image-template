@@ -169,8 +169,12 @@ jobs:
           version: 1.0.0
           variant: minimal
           iso_name: ${{ env.MY_IMAGE_NAME }}-latest-1.0.0.iso
-          lorax_templates: lorax_templates
-    
+          additional_templates: |
+            cache_copy_dnf.tmpl
+            flatpak_link.tmpl
+            flatpak_set_repo.tmpl
+            install_set_installer.tmpl
+          
       - name: Upload ISO as artifact
         id: upload
         uses: actions/upload-artifact@v4
@@ -182,3 +186,4 @@ jobs:
           if-no-files-found: error
           retention-days: 0
           compression-level: 0
+          
